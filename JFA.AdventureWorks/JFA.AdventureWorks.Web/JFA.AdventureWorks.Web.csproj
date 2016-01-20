@@ -246,6 +246,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JFA.AdventureWorks.Entities\JFA.AdventureWorks.Entities.csproj">
+      <Project>{60594456-195a-4a8a-a23e-1d7a65fbe96b}</Project>
+      <Name>JFA.AdventureWorks.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JFA.AdventureWorks.Repository\JFA.AdventureWorks.Repository.csproj">
+      <Project>{187d7ef7-67f4-4b2f-a99d-09b4889190d7}</Project>
+      <Name>JFA.AdventureWorks.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
