@@ -99,7 +99,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Address", Schema="Person")]
 	public partial class Address
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      AddressID       { get; set; } // int(10)
 		[Required, MaxLength(60, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   AddressLine1    { get; set; } // nvarchar(60)
@@ -121,7 +121,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("AddressType", Schema="Person")]
 	public partial class AddressType
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      AddressTypeID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name          { get; set; } // nvarchar(50)
@@ -134,7 +134,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("AWBuildVersion")]
 	public partial class AWBuildVersion
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public byte     SystemInformationID { get; set; } // tinyint(3)
 		[Required, MaxLength(25, ErrorMessage="{0} has maximum of {1} characters only."), Column("Database Version")]
 		public string   DatabaseVersion     { get; set; } // nvarchar(25)
@@ -147,7 +147,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("BillOfMaterials", Schema="Production")]
 	public partial class BillOfMaterial
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       BillOfMaterialsID { get; set; } // int(10)
 		public int?      ProductAssemblyID { get; set; } // int(10)
 		[Required]
@@ -168,7 +168,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("BusinessEntity", Schema="Person")]
 	public partial class BusinessEntity
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
 		[Required]
 		public Guid     rowguid          { get; set; } // uniqueidentifier
@@ -179,11 +179,11 @@ namespace JFA.AdventureWorks.Entities
 	[Table("BusinessEntityAddress", Schema="Person")]
 	public partial class BusinessEntityAddress
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      AddressID        { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 2)]
 		public int      AddressTypeID    { get; set; } // int(10)
 		[Required]
 		public Guid     rowguid          { get; set; } // uniqueidentifier
@@ -194,11 +194,11 @@ namespace JFA.AdventureWorks.Entities
 	[Table("BusinessEntityContact", Schema="Person")]
 	public partial class BusinessEntityContact
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      PersonID         { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 2)]
 		public int      ContactTypeID    { get; set; } // int(10)
 		[Required]
 		public Guid     rowguid          { get; set; } // uniqueidentifier
@@ -209,7 +209,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ContactType", Schema="Person")]
 	public partial class ContactType
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ContactTypeID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name          { get; set; } // nvarchar(50)
@@ -220,7 +220,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("CountryRegion", Schema="Person")]
 	public partial class CountryRegion
 	{
-		[Required, Key, MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 0), MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CountryRegionCode { get; set; } // nvarchar(3)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name              { get; set; } // nvarchar(50)
@@ -231,9 +231,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("CountryRegionCurrency", Schema="Sales")]
 	public partial class CountryRegionCurrency
 	{
-		[Required, Key, MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 0), MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CountryRegionCode { get; set; } // nvarchar(3)
-		[Required, Key, MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 1), MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CurrencyCode      { get; set; } // nchar(3)
 		[Required]
 		public DateTime ModifiedDate      { get; set; } // datetime(3)
@@ -242,7 +242,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("CreditCard", Schema="Sales")]
 	public partial class CreditCard
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      CreditCardID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CardType     { get; set; } // nvarchar(50)
@@ -259,7 +259,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Culture", Schema="Production")]
 	public partial class Culture
 	{
-		[Required, Key, MaxLength(6, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 0), MaxLength(6, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CultureID    { get; set; } // nchar(6)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name         { get; set; } // nvarchar(50)
@@ -270,7 +270,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Currency", Schema="Sales")]
 	public partial class Currency
 	{
-		[Required, Key, MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 0), MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CurrencyCode { get; set; } // nchar(3)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name         { get; set; } // nvarchar(50)
@@ -281,7 +281,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("CurrencyRate", Schema="Sales")]
 	public partial class CurrencyRate
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      CurrencyRateID   { get; set; } // int(10)
 		[Required]
 		public DateTime CurrencyRateDate { get; set; } // datetime(3)
@@ -300,7 +300,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Customer", Schema="Sales")]
 	public partial class Customer
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      CustomerID    { get; set; } // int(10)
 		public int?     PersonID      { get; set; } // int(10)
 		public int?     StoreID       { get; set; } // int(10)
@@ -316,7 +316,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("DatabaseLog")]
 	public partial class DatabaseLog
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      DatabaseLogID { get; set; } // int(10)
 		[Required]
 		public DateTime PostTime      { get; set; } // datetime(3)
@@ -337,7 +337,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Department", Schema="HumanResources")]
 	public partial class Department
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public short    DepartmentID { get; set; } // smallint(5)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name         { get; set; } // nvarchar(50)
@@ -350,7 +350,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Document", Schema="Production")]
 	public partial class Document
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public byte[]   DocumentNode    { get; set; } // hierarchyid(892)
 		public short?   DocumentLevel   { get; set; } // smallint(5)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
@@ -382,9 +382,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("EmailAddress", Schema="Person")]
 	public partial class EmailAddress
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      EmailAddressID   { get; set; } // int(10)
 		[MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only."), Column("EmailAddress")]
 		public string   EmailAddressField { get; set; } // nvarchar(50)
@@ -397,7 +397,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Employee", Schema="HumanResources")]
 	public partial class Employee
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID  { get; set; } // int(10)
 		[Required, MaxLength(15, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   NationalIDNumber  { get; set; } // nvarchar(15)
@@ -432,13 +432,13 @@ namespace JFA.AdventureWorks.Entities
 	[Table("EmployeeDepartmentHistory", Schema="HumanResources")]
 	public partial class EmployeeDepartmentHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public short     DepartmentID     { get; set; } // smallint(5)
-		[Required, Key]
+		[Required, Key, Column(Order = 2)]
 		public byte      ShiftID          { get; set; } // tinyint(3)
-		[Required, Key]
+		[Required, Key, Column(Order = 3)]
 		public DateTime  StartDate        { get; set; } // date
 		public DateTime? EndDate          { get; set; } // date
 		[Required]
@@ -448,9 +448,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("EmployeePayHistory", Schema="HumanResources")]
 	public partial class EmployeePayHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public DateTime RateChangeDate   { get; set; } // datetime(3)
 		[Required]
 		public decimal  Rate             { get; set; } // money(19,4)
@@ -463,7 +463,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ErrorLog")]
 	public partial class ErrorLog
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ErrorLogID     { get; set; } // int(10)
 		[Required]
 		public DateTime ErrorTime      { get; set; } // datetime(3)
@@ -483,7 +483,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Illustration", Schema="Production")]
 	public partial class Illustration
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      IllustrationID { get; set; } // int(10)
 		public string   Diagram        { get; set; } // xml(-1)
 		[Required]
@@ -493,7 +493,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("JobCandidate", Schema="HumanResources")]
 	public partial class JobCandidate
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      JobCandidateID   { get; set; } // int(10)
 		public int?     BusinessEntityID { get; set; } // int(10)
 		public string   Resume           { get; set; } // xml(-1)
@@ -504,7 +504,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Location", Schema="Production")]
 	public partial class Location
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public short    LocationID   { get; set; } // smallint(5)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name         { get; set; } // nvarchar(50)
@@ -519,7 +519,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Password", Schema="Person")]
 	public partial class Password
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
 		[Required, MaxLength(128, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   PasswordHash     { get; set; } // varchar(128)
@@ -534,7 +534,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Person", Schema="Person")]
 	public partial class Person
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID      { get; set; } // int(10)
 		[Required, MaxLength(2, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   PersonType            { get; set; } // nchar(2)
@@ -563,9 +563,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("PersonCreditCard", Schema="Sales")]
 	public partial class PersonCreditCard
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      CreditCardID     { get; set; } // int(10)
 		[Required]
 		public DateTime ModifiedDate     { get; set; } // datetime(3)
@@ -574,11 +574,11 @@ namespace JFA.AdventureWorks.Entities
 	[Table("PersonPhone", Schema="Person")]
 	public partial class PersonPhone
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID  { get; set; } // int(10)
-		[Required, Key, MaxLength(25, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 1), MaxLength(25, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   PhoneNumber       { get; set; } // nvarchar(25)
-		[Required, Key]
+		[Required, Key, Column(Order = 2)]
 		public int      PhoneNumberTypeID { get; set; } // int(10)
 		[Required]
 		public DateTime ModifiedDate      { get; set; } // datetime(3)
@@ -587,7 +587,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("PhoneNumberType", Schema="Person")]
 	public partial class PhoneNumberType
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      PhoneNumberTypeID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name              { get; set; } // nvarchar(50)
@@ -598,7 +598,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Product", Schema="Production")]
 	public partial class Product
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       ProductID             { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string    Name                  { get; set; } // nvarchar(50)
@@ -648,7 +648,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductCategory", Schema="Production")]
 	public partial class ProductCategory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductCategoryID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name              { get; set; } // nvarchar(50)
@@ -661,9 +661,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductCostHistory", Schema="Production")]
 	public partial class ProductCostHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       ProductID    { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public DateTime  StartDate    { get; set; } // datetime(3)
 		public DateTime? EndDate      { get; set; } // datetime(3)
 		[Required]
@@ -675,7 +675,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductDescription", Schema="Production")]
 	public partial class ProductDescription
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductDescriptionID { get; set; } // int(10)
 		[Required, MaxLength(400, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Description          { get; set; } // nvarchar(400)
@@ -688,9 +688,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductDocument", Schema="Production")]
 	public partial class ProductDocument
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductID    { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public byte[]   DocumentNode { get; set; } // hierarchyid(892)
 		[Required]
 		public DateTime ModifiedDate { get; set; } // datetime(3)
@@ -699,9 +699,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductInventory", Schema="Production")]
 	public partial class ProductInventory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductID    { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public short    LocationID   { get; set; } // smallint(5)
 		[Required, MaxLength(10, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Shelf        { get; set; } // nvarchar(10)
@@ -718,9 +718,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductListPriceHistory", Schema="Production")]
 	public partial class ProductListPriceHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       ProductID    { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public DateTime  StartDate    { get; set; } // datetime(3)
 		public DateTime? EndDate      { get; set; } // datetime(3)
 		[Required]
@@ -732,7 +732,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductModel", Schema="Production")]
 	public partial class ProductModel
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductModelID     { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name               { get; set; } // nvarchar(50)
@@ -747,9 +747,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductModelIllustration", Schema="Production")]
 	public partial class ProductModelIllustration
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductModelID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      IllustrationID { get; set; } // int(10)
 		[Required]
 		public DateTime ModifiedDate   { get; set; } // datetime(3)
@@ -758,11 +758,11 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductModelProductDescriptionCulture", Schema="Production")]
 	public partial class ProductModelProductDescriptionCulture
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductModelID       { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      ProductDescriptionID { get; set; } // int(10)
-		[Required, Key, MaxLength(6, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 2), MaxLength(6, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CultureID            { get; set; } // nchar(6)
 		[Required]
 		public DateTime ModifiedDate         { get; set; } // datetime(3)
@@ -771,7 +771,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductPhoto", Schema="Production")]
 	public partial class ProductPhoto
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductPhotoID         { get; set; } // int(10)
 		public byte[]   ThumbNailPhoto         { get; set; } // varbinary(-1)
 		[MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
@@ -786,9 +786,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductProductPhoto", Schema="Production")]
 	public partial class ProductProductPhoto
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductID      { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      ProductPhotoID { get; set; } // int(10)
 		[Required]
 		public bool     Primary        { get; set; } // bit
@@ -799,7 +799,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductReview", Schema="Production")]
 	public partial class ProductReview
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductReviewID { get; set; } // int(10)
 		[Required]
 		public int      ProductID       { get; set; } // int(10)
@@ -820,7 +820,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductSubcategory", Schema="Production")]
 	public partial class ProductSubcategory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ProductSubcategoryID { get; set; } // int(10)
 		[Required]
 		public int      ProductCategoryID    { get; set; } // int(10)
@@ -835,9 +835,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ProductVendor", Schema="Purchasing")]
 	public partial class ProductVendor
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       ProductID        { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int       BusinessEntityID { get; set; } // int(10)
 		[Required]
 		public int       AverageLeadTime  { get; set; } // int(10)
@@ -859,9 +859,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("PurchaseOrderDetail", Schema="Purchasing")]
 	public partial class PurchaseOrderDetail
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      PurchaseOrderID       { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      PurchaseOrderDetailID { get; set; } // int(10)
 		[Required]
 		public DateTime DueDate               { get; set; } // datetime(3)
@@ -886,7 +886,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("PurchaseOrderHeader", Schema="Purchasing")]
 	public partial class PurchaseOrderHeader
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       PurchaseOrderID { get; set; } // int(10)
 		[Required]
 		public byte      RevisionNumber  { get; set; } // tinyint(3)
@@ -916,9 +916,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesOrderDetail", Schema="Sales")]
 	public partial class SalesOrderDetail
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      SalesOrderID          { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      SalesOrderDetailID    { get; set; } // int(10)
 		[MaxLength(25, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   CarrierTrackingNumber { get; set; } // nvarchar(25)
@@ -943,7 +943,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesOrderHeader", Schema="Sales")]
 	public partial class SalesOrderHeader
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       SalesOrderID           { get; set; } // int(10)
 		[Required]
 		public byte      RevisionNumber         { get; set; } // tinyint(3)
@@ -995,9 +995,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesOrderHeaderSalesReason", Schema="Sales")]
 	public partial class SalesOrderHeaderSalesReason
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      SalesOrderID  { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      SalesReasonID { get; set; } // int(10)
 		[Required]
 		public DateTime ModifiedDate  { get; set; } // datetime(3)
@@ -1006,7 +1006,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesPerson", Schema="Sales")]
 	public partial class SalesPerson
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
 		public int?     TerritoryID      { get; set; } // int(10)
 		public decimal? SalesQuota       { get; set; } // money(19,4)
@@ -1027,9 +1027,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesPersonQuotaHistory", Schema="Sales")]
 	public partial class SalesPersonQuotaHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public DateTime QuotaDate        { get; set; } // datetime(3)
 		[Required]
 		public decimal  SalesQuota       { get; set; } // money(19,4)
@@ -1042,7 +1042,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesReason", Schema="Sales")]
 	public partial class SalesReason
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      SalesReasonID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name          { get; set; } // nvarchar(50)
@@ -1055,7 +1055,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesTaxRate", Schema="Sales")]
 	public partial class SalesTaxRate
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      SalesTaxRateID  { get; set; } // int(10)
 		[Required]
 		public int      StateProvinceID { get; set; } // int(10)
@@ -1074,7 +1074,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesTerritory", Schema="Sales")]
 	public partial class SalesTerritory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      TerritoryID       { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name              { get; set; } // nvarchar(50)
@@ -1099,11 +1099,11 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SalesTerritoryHistory", Schema="Sales")]
 	public partial class SalesTerritoryHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       BusinessEntityID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int       TerritoryID      { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 2)]
 		public DateTime  StartDate        { get; set; } // datetime(3)
 		public DateTime? EndDate          { get; set; } // datetime(3)
 		[Required]
@@ -1115,7 +1115,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ScrapReason", Schema="Production")]
 	public partial class ScrapReason
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public short    ScrapReasonID { get; set; } // smallint(5)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name          { get; set; } // nvarchar(50)
@@ -1126,7 +1126,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Shift", Schema="HumanResources")]
 	public partial class Shift
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public byte     ShiftID      { get; set; } // tinyint(3)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name         { get; set; } // nvarchar(50)
@@ -1141,7 +1141,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ShipMethod", Schema="Purchasing")]
 	public partial class ShipMethod
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ShipMethodID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name         { get; set; } // nvarchar(50)
@@ -1158,7 +1158,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("ShoppingCartItem", Schema="Sales")]
 	public partial class ShoppingCartItem
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      ShoppingCartItemID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   ShoppingCartID     { get; set; } // nvarchar(50)
@@ -1175,7 +1175,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SpecialOffer", Schema="Sales")]
 	public partial class SpecialOffer
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      SpecialOfferID { get; set; } // int(10)
 		[Required, MaxLength(255, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Description    { get; set; } // nvarchar(255)
@@ -1201,9 +1201,9 @@ namespace JFA.AdventureWorks.Entities
 	[Table("SpecialOfferProduct", Schema="Sales")]
 	public partial class SpecialOfferProduct
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      SpecialOfferID { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int      ProductID      { get; set; } // int(10)
 		[Required]
 		public Guid     rowguid        { get; set; } // uniqueidentifier
@@ -1214,7 +1214,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("StateProvince", Schema="Person")]
 	public partial class StateProvince
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      StateProvinceID         { get; set; } // int(10)
 		[Required, MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   StateProvinceCode       { get; set; } // nchar(3)
@@ -1235,7 +1235,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Store", Schema="Sales")]
 	public partial class Store
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID { get; set; } // int(10)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name             { get; set; } // nvarchar(50)
@@ -1250,7 +1250,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("TransactionHistory", Schema="Production")]
 	public partial class TransactionHistory
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      TransactionID        { get; set; } // int(10)
 		[Required]
 		public int      ProductID            { get; set; } // int(10)
@@ -1273,7 +1273,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("TransactionHistoryArchive", Schema="Production")]
 	public partial class TransactionHistoryArchive
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      TransactionID        { get; set; } // int(10)
 		[Required]
 		public int      ProductID            { get; set; } // int(10)
@@ -1296,7 +1296,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("UnitMeasure", Schema="Production")]
 	public partial class UnitMeasure
 	{
-		[Required, Key, MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
+		[Required, Key, Column(Order = 0), MaxLength(3, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   UnitMeasureCode { get; set; } // nchar(3)
 		[Required, MaxLength(50, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   Name            { get; set; } // nvarchar(50)
@@ -1307,7 +1307,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("Vendor", Schema="Purchasing")]
 	public partial class Vendor
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int      BusinessEntityID        { get; set; } // int(10)
 		[Required, MaxLength(15, ErrorMessage="{0} has maximum of {1} characters only.")]
 		public string   AccountNumber           { get; set; } // nvarchar(15)
@@ -1328,7 +1328,7 @@ namespace JFA.AdventureWorks.Entities
 	[Table("WorkOrder", Schema="Production")]
 	public partial class WorkOrder
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       WorkOrderID   { get; set; } // int(10)
 		[Required]
 		public int       ProductID     { get; set; } // int(10)
@@ -1351,11 +1351,11 @@ namespace JFA.AdventureWorks.Entities
 	[Table("WorkOrderRouting", Schema="Production")]
 	public partial class WorkOrderRouting
 	{
-		[Required, Key]
+		[Required, Key, Column(Order = 0)]
 		public int       WorkOrderID        { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 1)]
 		public int       ProductID          { get; set; } // int(10)
-		[Required, Key]
+		[Required, Key, Column(Order = 2)]
 		public short     OperationSequence  { get; set; } // smallint(5)
 		[Required]
 		public short     LocationID         { get; set; } // smallint(5)

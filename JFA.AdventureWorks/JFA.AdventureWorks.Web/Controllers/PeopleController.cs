@@ -7,6 +7,7 @@ namespace JFA.AdventureWorks.Web.Controllers
         // GET: People
         public ActionResult Index()
         {
+
             return View();
         }
 

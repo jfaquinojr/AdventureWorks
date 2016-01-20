@@ -188,6 +188,8 @@ static Action<GeneratedTextTransformation,Table> RenderTable = (tt,t) =>
 			t.Columns.Values.Max(_ => _.Attributes.Count == 0      ? 0 : string.Join(", ", _.Attributes.Distinct().ToArray()).Length),
 		};
 
+		int PKeyCounter = 0;
+
 		foreach (var c in from c in t.Columns.Values orderby c.ID select c)
 		{
 			var attrs = new List<string>();
@@ -198,8 +200,10 @@ static Action<GeneratedTextTransformation,Table> RenderTable = (tt,t) =>
 			//c.Attributes.Count == 0      ? null : string.Join(", ", c.Attributes.Distinct().ToArray()),
 			//c.ColumnType.Contains("char")  ? string.Format("MaxLength({0}, ErrorMessage=\"{{0}} has maximum of {{1}} characters only.\")", c.Length) : null
 			attrs.Add(c.IsNullable                   ? null : "Required");
-			attrs.Add(c.IsPrimaryKey                 ? "Key" : null);
+			attrs.Add(c.IsPrimaryKey                 ? "Key, Column(Order = " + PKeyCounter + ")" : null);
 			attrs.Add(c.ColumnType.Contains("char")  ? string.Format("MaxLength({0}, ErrorMessage=\"{{0}} has maximum of {{1}} characters only.\")", c.Length) : null);
+
+			if(c.IsPrimaryKey) PKeyCounter++;
 
 			// jaquino - whitespaces between names are illegal
 			string origColName = c.ColumnName;
