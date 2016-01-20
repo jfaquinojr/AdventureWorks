@@ -1,0 +1,19 @@
+﻿<#@ template language="C#" hostspecific="True"  #>
+<#@ output extension=".generated.cs"   #>
+<#@ include file="T4\EFCodeGen.ttinclude"   #>
+<#@ include file="T4\PluralSingular.ttinclude" #>
+<#@ include file="T4\MSSQL.ttinclude"    #> 
+<#
+	ConnectionString = "Data Source=.;Initial Catalog=AdventureWorks2008; Integrated Security=SSPI"; 
+	  
+	Namespace        = "JFA.AdventureWorks.Entities";
+	DataContextName  = "AdventureWorksDb"; 
+
+	LoadMetadata();
+
+	SingularizeClassNames = false; 
+			
+	GenerateModel();
+
+	IncludeView = false;
+#>
