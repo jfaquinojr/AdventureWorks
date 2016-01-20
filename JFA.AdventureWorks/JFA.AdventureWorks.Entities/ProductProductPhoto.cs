@@ -19,31 +19,35 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class ProductProductPhoto
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Product identification number. Foreign key to Product.ProductID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Product photo identification number. Foreign key to ProductPhoto.ProductPhotoID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int ProductPhotoId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// 0 = Photo is not the principal image. 1 = Photo is the principal image.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public bool Primary { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Product Product { get; set; }
+        public virtual ProductPhoto ProductPhoto { get; set; }
         
-        public AwBuildVersion()
+        public ProductProductPhoto()
         {
+            Primary = false;
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

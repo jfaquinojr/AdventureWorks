@@ -19,32 +19,31 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class ContactType
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ContactType records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ContactTypeId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Contact type description.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
         
-        public AwBuildVersion()
+        public ContactType()
         {
             ModifiedDate = System.DateTime.Now;
+            BusinessEntityContacts = new List<BusinessEntityContact>();
             InitializePartial();
         }
 

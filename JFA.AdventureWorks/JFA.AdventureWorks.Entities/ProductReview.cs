@@ -19,31 +19,54 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class ProductReview
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ProductReview records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductReviewId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Product identification number. Foreign key to Product.ProductID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int ProductId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Name of the reviewer.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string ReviewerName { get; set; }
+
+        ///<summary>
+        /// Date review was submitted.
+        ///</summary>
+        public DateTime ReviewDate { get; set; }
+
+        ///<summary>
+        /// Reviewer's e-mail address.
+        ///</summary>
+        public string EmailAddress { get; set; }
+
+        ///<summary>
+        /// Product rating given by the reviewer. Scale is 1 to 5 with 5 as the highest rating.
+        ///</summary>
+        public int Rating { get; set; }
+
+        ///<summary>
+        /// Reviewer's comments
+        ///</summary>
+        public string Comments { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Product Product { get; set; }
         
-        public AwBuildVersion()
+        public ProductReview()
         {
+            ReviewDate = System.DateTime.Now;
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

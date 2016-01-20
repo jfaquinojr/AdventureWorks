@@ -19,32 +19,44 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class ProductSubcategory
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ProductSubcategory records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductSubcategoryId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Product category identification number. Foreign key to ProductCategory.ProductCategoryID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int ProductCategoryId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Subcategory description.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string Name { get; set; }
+
+        ///<summary>
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
+        ///</summary>
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
+
+        public virtual ProductCategory ProductCategory { get; set; }
         
-        public AwBuildVersion()
+        public ProductSubcategory()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
+            Products = new List<Product>();
             InitializePartial();
         }
 

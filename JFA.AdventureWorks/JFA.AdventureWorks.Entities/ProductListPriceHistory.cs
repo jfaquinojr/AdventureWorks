@@ -19,30 +19,37 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class ProductListPriceHistory
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Product identification number. Foreign key to Product.ProductID
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// List price start date.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public DateTime StartDate { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// List price end date
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
+        ///<summary>
+        /// Product list price.
+        ///</summary>
+        public decimal ListPrice { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Product Product { get; set; }
         
-        public AwBuildVersion()
+        public ProductListPriceHistory()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

@@ -19,30 +19,44 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class EmployeeDepartmentHistory
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Employee identification number. Foreign key to Employee.BusinessEntityID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Department in which the employee worked including currently. Foreign key to Department.DepartmentID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public short DepartmentId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Identifies which 8-hour shift the employee works. Foreign key to Shift.Shift.ID.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public byte ShiftId { get; set; }
+
+        ///<summary>
+        /// Date the employee started work in the department.
+        ///</summary>
+        public DateTime StartDate { get; set; }
+
+        ///<summary>
+        /// Date the employee left the department. NULL = Current department.
+        ///</summary>
+        public DateTime? EndDate { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Department Department { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Shift Shift { get; set; }
         
-        public AwBuildVersion()
+        public EmployeeDepartmentHistory()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

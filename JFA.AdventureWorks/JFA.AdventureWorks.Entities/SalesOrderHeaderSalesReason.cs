@@ -19,30 +19,28 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class SalesOrderHeaderSalesReason
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key. Foreign key to SalesOrderHeader.SalesOrderID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int SalesOrderId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Primary key. Foreign key to SalesReason.SalesReasonID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public int SalesReasonId { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual SalesOrderHeader SalesOrderHeader { get; set; }
+        public virtual SalesReason SalesReason { get; set; }
         
-        public AwBuildVersion()
+        public SalesOrderHeaderSalesReason()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

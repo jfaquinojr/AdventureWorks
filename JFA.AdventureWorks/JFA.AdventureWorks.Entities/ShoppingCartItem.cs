@@ -19,31 +19,45 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class ShoppingCartItem
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ShoppingCartItem records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ShoppingCartItemId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Shopping cart identification number.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string ShoppingCartId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Product quantity ordered.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public int Quantity { get; set; }
+
+        ///<summary>
+        /// Product ordered. Foreign key to Product.ProductID.
+        ///</summary>
+        public int ProductId { get; set; }
+
+        ///<summary>
+        /// Date the time the record was created.
+        ///</summary>
+        public DateTime DateCreated { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Product Product { get; set; }
         
-        public AwBuildVersion()
+        public ShoppingCartItem()
         {
+            Quantity = 1;
+            DateCreated = System.DateTime.Now;
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

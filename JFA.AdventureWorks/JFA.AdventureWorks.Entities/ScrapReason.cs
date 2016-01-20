@@ -19,32 +19,31 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class ScrapReason
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ScrapReason records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public short ScrapReasonId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Failure description.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<WorkOrder> WorkOrders { get; set; }
         
-        public AwBuildVersion()
+        public ScrapReason()
         {
             ModifiedDate = System.DateTime.Now;
+            WorkOrders = new List<WorkOrder>();
             InitializePartial();
         }
 

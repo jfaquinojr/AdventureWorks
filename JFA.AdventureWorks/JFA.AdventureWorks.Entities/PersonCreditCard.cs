@@ -19,30 +19,28 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class PersonCreditCard
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Business entity identification number. Foreign key to Person.BusinessEntityID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Credit card identification number. Foreign key to CreditCard.CreditCardID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public int CreditCardId { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual CreditCard CreditCard { get; set; }
+        public virtual Person Person { get; set; }
         
-        public AwBuildVersion()
+        public PersonCreditCard()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

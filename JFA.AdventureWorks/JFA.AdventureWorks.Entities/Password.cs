@@ -19,31 +19,35 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class Password
     {
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Password for the e-mail account.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public string PasswordHash { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Random value concatenated with the password string before the password is hashed.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string PasswordSalt { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Person Person { get; set; }
         
-        public AwBuildVersion()
+        public Password()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

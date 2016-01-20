@@ -19,32 +19,45 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class Location
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for Location records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public short LocationId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Location description.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Standard hourly cost of the manufacturing location.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public decimal CostRate { get; set; }
+
+        ///<summary>
+        /// Work capacity (in hours) of the manufacturing location.
+        ///</summary>
+        public decimal Availability { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<ProductInventory> ProductInventories { get; set; }
+        public virtual ICollection<WorkOrderRouting> WorkOrderRoutings { get; set; }
         
-        public AwBuildVersion()
+        public Location()
         {
+            CostRate = 0.00m;
+            Availability = 0.00m;
             ModifiedDate = System.DateTime.Now;
+            ProductInventories = new List<ProductInventory>();
+            WorkOrderRoutings = new List<WorkOrderRouting>();
             InitializePartial();
         }
 

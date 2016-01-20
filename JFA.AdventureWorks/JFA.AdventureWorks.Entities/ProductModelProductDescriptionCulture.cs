@@ -19,30 +19,34 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class ProductModelProductDescriptionCulture
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key. Foreign key to ProductModel.ProductModelID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductModelId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Primary key. Foreign key to ProductDescription.ProductDescriptionID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int ProductDescriptionId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Culture identification number. Foreign key to Culture.CultureID.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string CultureId { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Culture Culture { get; set; }
+        public virtual ProductDescription ProductDescription { get; set; }
+        public virtual ProductModel ProductModel { get; set; }
         
-        public AwBuildVersion()
+        public ProductModelProductDescriptionCulture()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

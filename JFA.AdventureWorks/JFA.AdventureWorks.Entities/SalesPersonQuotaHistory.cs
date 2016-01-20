@@ -19,31 +19,39 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class SalesPersonQuotaHistory
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Sales person identification number. Foreign key to SalesPerson.BusinessEntityID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Sales quota date.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public DateTime QuotaDate { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Sales quota amount.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public decimal SalesQuota { get; set; }
+
+        ///<summary>
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
+        ///</summary>
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual SalesPerson SalesPerson { get; set; }
         
-        public AwBuildVersion()
+        public SalesPersonQuotaHistory()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

@@ -19,31 +19,51 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class ProductInventory
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Product identification number. Foreign key to Product.ProductID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Inventory location identification number. Foreign key to Location.LocationID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public short LocationId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Storage compartment within an inventory location.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string Shelf { get; set; }
+
+        ///<summary>
+        /// Storage container on a shelf in an inventory location.
+        ///</summary>
+        public byte Bin { get; set; }
+
+        ///<summary>
+        /// Quantity of products in the inventory location.
+        ///</summary>
+        public short Quantity { get; set; }
+
+        ///<summary>
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
+        ///</summary>
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Location Location { get; set; }
+        public virtual Product Product { get; set; }
         
-        public AwBuildVersion()
+        public ProductInventory()
         {
+            Quantity = 0;
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

@@ -19,32 +19,37 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class AddressType
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for AddressType records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int AddressTypeId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Address type description. For example, Billing, Home, or Shipping.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
         
-        public AwBuildVersion()
+        public AddressType()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
+            BusinessEntityAddresses = new List<BusinessEntityAddress>();
             InitializePartial();
         }
 

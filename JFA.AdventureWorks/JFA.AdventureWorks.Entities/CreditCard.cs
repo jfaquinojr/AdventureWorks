@@ -19,32 +19,48 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class CreditCard
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for CreditCard records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int CreditCardId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Credit card name.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string CardType { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Credit card number.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string CardNumber { get; set; }
+
+        ///<summary>
+        /// Credit card expiration month.
+        ///</summary>
+        public byte ExpMonth { get; set; }
+
+        ///<summary>
+        /// Credit card expiration year.
+        ///</summary>
+        public short ExpYear { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<PersonCreditCard> PersonCreditCards { get; set; }
+        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
         
-        public AwBuildVersion()
+        public CreditCard()
         {
             ModifiedDate = System.DateTime.Now;
+            PersonCreditCards = new List<PersonCreditCard>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
             InitializePartial();
         }
 

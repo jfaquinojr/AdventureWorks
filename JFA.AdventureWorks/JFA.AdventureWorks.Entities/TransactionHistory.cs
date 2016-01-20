@@ -19,57 +19,61 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class ErrorLog
+    public partial class TransactionHistory
     {
 
         ///<summary>
-        /// Primary key for ErrorLog records.
+        /// Primary key for TransactionHistory records.
         ///</summary>
-        public int ErrorLogId { get; set; }
+        public int TransactionId { get; set; }
 
         ///<summary>
-        /// The date and time at which the error occurred.
+        /// Product identification number. Foreign key to Product.ProductID.
         ///</summary>
-        public DateTime ErrorTime { get; set; }
+        public int ProductId { get; set; }
 
         ///<summary>
-        /// The user who executed the batch in which the error occurred.
+        /// Purchase order, sales order, or work order identification number.
         ///</summary>
-        public string UserName { get; set; }
+        public int ReferenceOrderId { get; set; }
 
         ///<summary>
-        /// The error number of the error that occurred.
+        /// Line number associated with the purchase order, sales order, or work order.
         ///</summary>
-        public int ErrorNumber { get; set; }
+        public int ReferenceOrderLineId { get; set; }
 
         ///<summary>
-        /// The severity of the error that occurred.
+        /// Date and time of the transaction.
         ///</summary>
-        public int? ErrorSeverity { get; set; }
+        public DateTime TransactionDate { get; set; }
 
         ///<summary>
-        /// The state number of the error that occurred.
+        /// W = WorkOrder, S = SalesOrder, P = PurchaseOrder
         ///</summary>
-        public int? ErrorState { get; set; }
+        public string TransactionType { get; set; }
 
         ///<summary>
-        /// The name of the stored procedure or trigger where the error occurred.
+        /// Product quantity.
         ///</summary>
-        public string ErrorProcedure { get; set; }
+        public int Quantity { get; set; }
 
         ///<summary>
-        /// The line number at which the error occurred.
+        /// Product cost.
         ///</summary>
-        public int? ErrorLine { get; set; }
+        public decimal ActualCost { get; set; }
 
         ///<summary>
-        /// The message text of the error that occurred.
+        /// Date and time the record was last updated.
         ///</summary>
-        public string ErrorMessage { get; set; }
+        public DateTime ModifiedDate { get; set; }
+
+        public virtual Product Product { get; set; }
         
-        public ErrorLog()
+        public TransactionHistory()
         {
-            ErrorTime = System.DateTime.Now;
+            ReferenceOrderLineId = 0;
+            TransactionDate = System.DateTime.Now;
+            ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }
 

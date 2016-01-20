@@ -19,32 +19,37 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class BusinessEntity
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for all customers, vendors, and employees.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+        public virtual ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual Store Store { get; set; }
+        public virtual Vendor Vendor { get; set; }
         
-        public AwBuildVersion()
+        public BusinessEntity()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
+            BusinessEntityAddresses = new List<BusinessEntityAddress>();
+            BusinessEntityContacts = new List<BusinessEntityContact>();
             InitializePartial();
         }
 

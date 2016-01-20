@@ -19,30 +19,32 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class JobCandidate
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for JobCandidate records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int JobCandidateId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Employee identification number if applicant was hired. Foreign key to Employee.BusinessEntityID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int? BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Résumé in XML format.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string Resume { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Employee Employee { get; set; }
         
-        public AwBuildVersion()
+        public JobCandidate()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

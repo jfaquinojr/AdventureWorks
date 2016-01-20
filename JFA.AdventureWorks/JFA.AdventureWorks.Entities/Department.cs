@@ -19,32 +19,36 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class Department
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for Department records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public short DepartmentId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Name of the department.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Name of the group to which the department belongs.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string GroupName { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
         
-        public AwBuildVersion()
+        public Department()
         {
             ModifiedDate = System.DateTime.Now;
+            EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
             InitializePartial();
         }
 

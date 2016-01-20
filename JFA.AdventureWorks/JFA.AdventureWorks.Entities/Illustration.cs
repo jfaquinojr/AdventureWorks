@@ -19,32 +19,31 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class Illustration
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for Illustration records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int IllustrationId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Illustrations used in manufacturing instructions. Stored as XML.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string Diagram { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<ProductModelIllustration> ProductModelIllustrations { get; set; }
         
-        public AwBuildVersion()
+        public Illustration()
         {
             ModifiedDate = System.DateTime.Now;
+            ProductModelIllustrations = new List<ProductModelIllustration>();
             InitializePartial();
         }
 

@@ -19,32 +19,51 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class ShipMethod
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ShipMethod records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ShipMethodId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Shipping company name.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Minimum shipping charge.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public decimal ShipBase { get; set; }
+
+        ///<summary>
+        /// Shipping charge per pound.
+        ///</summary>
+        public decimal ShipRate { get; set; }
+
+        ///<summary>
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
+        ///</summary>
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
+        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
         
-        public AwBuildVersion()
+        public ShipMethod()
         {
+            ShipBase = 0.00m;
+            ShipRate = 0.00m;
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
+            PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
             InitializePartial();
         }
 

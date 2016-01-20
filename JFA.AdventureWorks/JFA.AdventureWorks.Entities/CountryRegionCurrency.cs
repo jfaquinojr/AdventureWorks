@@ -19,30 +19,28 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class CountryRegionCurrency
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// ISO code for countries and regions. Foreign key to CountryRegion.CountryRegionCode.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public string CountryRegionCode { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// ISO standard currency code. Foreign key to Currency.CurrencyCode.
         ///</summary>
-        public string DatabaseVersion { get; set; }
-
-        ///<summary>
-        /// Date and time the record was last updated.
-        ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string CurrencyCode { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual CountryRegion CountryRegion { get; set; }
+        public virtual Currency Currency { get; set; }
         
-        public AwBuildVersion()
+        public CountryRegionCurrency()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

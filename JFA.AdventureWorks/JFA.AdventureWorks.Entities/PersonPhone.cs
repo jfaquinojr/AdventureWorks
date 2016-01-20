@@ -19,30 +19,33 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class PersonPhone
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Business entity identification number. Foreign key to Person.BusinessEntityID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Telephone number identification number.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string PhoneNumber { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Kind of phone number. Foreign key to PhoneNumberType.PhoneNumberTypeID.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public int PhoneNumberTypeId { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Person Person { get; set; }
+        public virtual PhoneNumberType PhoneNumberType { get; set; }
         
-        public AwBuildVersion()
+        public PersonPhone()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

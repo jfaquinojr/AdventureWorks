@@ -19,30 +19,37 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class EmployeePayHistory
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Employee identification number. Foreign key to Employee.BusinessEntityID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Date the change in pay is effective
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public DateTime RateChangeDate { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Salary hourly rate.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public decimal Rate { get; set; }
+
+        ///<summary>
+        /// 1 = Salary received monthly, 2 = Salary received biweekly
+        ///</summary>
+        public byte PayFrequency { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual Employee Employee { get; set; }
         
-        public AwBuildVersion()
+        public EmployeePayHistory()
         {
             ModifiedDate = System.DateTime.Now;
             InitializePartial();

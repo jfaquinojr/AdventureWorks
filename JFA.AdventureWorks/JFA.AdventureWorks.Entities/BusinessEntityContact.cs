@@ -19,31 +19,41 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    public partial class BusinessEntityContact
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key. Foreign key to BusinessEntity.BusinessEntityID.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int BusinessEntityId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Primary key. Foreign key to Person.BusinessEntityID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int PersonId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Primary key.  Foreign key to ContactType.ContactTypeID.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public int ContactTypeId { get; set; }
+
+        ///<summary>
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
+        ///</summary>
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual BusinessEntity BusinessEntity { get; set; }
+        public virtual ContactType ContactType { get; set; }
+        public virtual Person Person { get; set; }
         
-        public AwBuildVersion()
+        public BusinessEntityContact()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
             InitializePartial();
         }

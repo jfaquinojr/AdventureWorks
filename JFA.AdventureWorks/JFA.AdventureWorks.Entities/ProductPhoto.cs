@@ -19,32 +19,46 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class ProductPhoto
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for ProductPhoto records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int ProductPhotoId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Small image of the product.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public byte[] ThumbNailPhoto { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Small image file name.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string ThumbnailPhotoFileName { get; set; }
+
+        ///<summary>
+        /// Large image of the product.
+        ///</summary>
+        public byte[] LargePhoto { get; set; }
+
+        ///<summary>
+        /// Large image file name.
+        ///</summary>
+        public string LargePhotoFileName { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<ProductProductPhoto> ProductProductPhotoes { get; set; }
         
-        public AwBuildVersion()
+        public ProductPhoto()
         {
             ModifiedDate = System.DateTime.Now;
+            ProductProductPhotoes = new List<ProductProductPhoto>();
             InitializePartial();
         }
 

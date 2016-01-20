@@ -19,32 +19,40 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class SpecialOfferProduct
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for SpecialOfferProduct records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int SpecialOfferId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Product identification number. Foreign key to Product.ProductID.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public int ProductId { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public Guid Rowguid { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
+
+        public virtual Product Product { get; set; }
+        public virtual SpecialOffer SpecialOffer { get; set; }
         
-        public AwBuildVersion()
+        public SpecialOfferProduct()
         {
+            Rowguid = System.Guid.NewGuid();
             ModifiedDate = System.DateTime.Now;
+            SalesOrderDetails = new List<SalesOrderDetail>();
             InitializePartial();
         }
 

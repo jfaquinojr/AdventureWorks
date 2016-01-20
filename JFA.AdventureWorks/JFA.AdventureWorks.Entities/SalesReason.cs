@@ -19,32 +19,36 @@ using System.Threading;
 
 namespace JFA.AdventureWorks.Entities
 {
-    public partial class AwBuildVersion
+    [GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.17.1.0")]
+    public partial class SalesReason
     {
 
         ///<summary>
-        /// Primary key for AWBuildVersion records.
+        /// Primary key for SalesReason records.
         ///</summary>
-        public byte SystemInformationId { get; set; }
+        public int SalesReasonId { get; set; }
 
         ///<summary>
-        /// Version number of the database in 9.yy.mm.dd.00 format.
+        /// Sales reason description.
         ///</summary>
-        public string DatabaseVersion { get; set; }
+        public string Name { get; set; }
 
         ///<summary>
-        /// Date and time the record was last updated.
+        /// Category the sales reason belongs to.
         ///</summary>
-        public DateTime VersionDate { get; set; }
+        public string ReasonType { get; set; }
 
         ///<summary>
         /// Date and time the record was last updated.
         ///</summary>
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<SalesOrderHeaderSalesReason> SalesOrderHeaderSalesReasons { get; set; }
         
-        public AwBuildVersion()
+        public SalesReason()
         {
             ModifiedDate = System.DateTime.Now;
+            SalesOrderHeaderSalesReasons = new List<SalesOrderHeaderSalesReason>();
             InitializePartial();
         }
 
