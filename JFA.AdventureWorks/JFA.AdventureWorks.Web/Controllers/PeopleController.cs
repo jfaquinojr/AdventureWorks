@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using JFA.AdventureWorks.Repository;
+using System.Web.Mvc;
 
 namespace JFA.AdventureWorks.Web.Controllers
 {
@@ -7,8 +8,8 @@ namespace JFA.AdventureWorks.Web.Controllers
         // GET: People
         public ActionResult Index()
         {
-
-            return View();
+            var db = new PersonRepository();
+            return View(db.GetAll());
         }
 
         // GET: People/Details/5
