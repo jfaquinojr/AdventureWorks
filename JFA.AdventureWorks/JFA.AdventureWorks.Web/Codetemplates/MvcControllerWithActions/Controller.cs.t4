@@ -1,31 +1,50 @@
-﻿using JFA.AdventureWorks.Repository;
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension="cs" #>
+<#@ import namespace="System" #>
+<#@ parameter type="System.String" name="ControllerName" #>
+<#@ parameter type="System.String" name="ControllerRootName" #>
+<#@ parameter type="System.String" name="Namespace" #>
+<#@ parameter type="System.String" name="AreaName" #>
+<#
+string routePrefix;
+if (String.IsNullOrEmpty(AreaName)) 
+{
+    routePrefix = ControllerRootName;
+}
+else
+{
+    routePrefix = AreaName + "/" + ControllerRootName;
+}
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
-namespace JFA.AdventureWorks.Web.Controllers
+namespace <#= Namespace #>
 {
-    public class PeopleController : Controller
+    public class <#= ControllerName #> : Controller
     {
-        // GET: People
+        // GET: <#= routePrefix #>
         public ActionResult Index()
         {
-            var db = new PersonRepository();
-            int p, r;
-            return View(db.Search("", 1, 10, out r, out p));
+            return View();
         }
 
-        // GET: People/Details/5
+        // GET: <#= routePrefix #>/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: People/Create
+        // GET: <#= routePrefix #>/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: <#= routePrefix #>/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -41,13 +60,13 @@ namespace JFA.AdventureWorks.Web.Controllers
             }
         }
 
-        // GET: People/Edit/5
+        // GET: <#= routePrefix #>/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: People/Edit/5
+        // POST: <#= routePrefix #>/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -63,13 +82,13 @@ namespace JFA.AdventureWorks.Web.Controllers
             }
         }
 
-        // GET: People/Delete/5
+        // GET: <#= routePrefix #>/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: People/Delete/5
+        // POST: <#= routePrefix #>/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

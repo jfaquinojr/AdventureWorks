@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JFA.AdventureWorks.Entities
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JFA.AdventureWorks.Repository", "JFA.AdventureWorks.Repository\JFA.AdventureWorks.Repository.csproj", "{187D7EF7-67F4-4B2F-A99D-09B4889190D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB3B8F26-50B5-4BD7-9A61-343A9E554DDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JFA.AdventureWorks.UnitTests", "JFA.AdventureWorks.UnitTests\JFA.AdventureWorks.UnitTests.csproj", "{0BCF697D-E3B9-4A61-AA66-D33F36BA3EF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{187D7EF7-67F4-4B2F-A99D-09B4889190D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{187D7EF7-67F4-4B2F-A99D-09B4889190D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{187D7EF7-67F4-4B2F-A99D-09B4889190D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BCF697D-E3B9-4A61-AA66-D33F36BA3EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BCF697D-E3B9-4A61-AA66-D33F36BA3EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BCF697D-E3B9-4A61-AA66-D33F36BA3EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BCF697D-E3B9-4A61-AA66-D33F36BA3EF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BCF697D-E3B9-4A61-AA66-D33F36BA3EF0} = {BB3B8F26-50B5-4BD7-9A61-343A9E554DDD}
 	EndGlobalSection
 EndGlobal

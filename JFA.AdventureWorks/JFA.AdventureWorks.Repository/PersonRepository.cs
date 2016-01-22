@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System;
 
 namespace JFA.AdventureWorks.Repository
 {
@@ -29,6 +28,22 @@ namespace JFA.AdventureWorks.Repository
         public List<Person> GetAll()
         {
             return db.People.ToList();
+        }
+
+        public List<Person> Search(string what, int pageNo, int rows, out int totalRows, out int totalPages)
+        {
+            var result = db.People
+                .Where(m => m.FirstName.Contains(what) || m.LastName.Contains(what));
+                //.AsEnumerable()
+                //.Where(m => m.BusinessEntityID.ToString().Contains(what));
+
+            var paginator = new Paginator<Person>(result.ToList());
+            paginator.RowCount = rows;
+            paginator.PageNumber = pageNo;
+            totalRows = paginator.TotalRows;
+            totalPages = paginator.TotalPages;
+
+            return paginator.Rows;
         }
 
         public Person GetByID<TKey>(TKey id)

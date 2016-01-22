@@ -10,5 +10,6 @@ namespace JFA.AdventureWorks.Repository
         void Save(T entity);
         void Delete<TKey>(TKey id);
         void Commit();
+        List<T> Search(string what, int pageNo, int rows, out int totalRows, out int totalPages);
     }
 }
