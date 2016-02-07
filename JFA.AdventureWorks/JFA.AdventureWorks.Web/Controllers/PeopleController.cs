@@ -1,4 +1,6 @@
-﻿using JFA.AdventureWorks.Repository;
+﻿using JFA.AdventureWorks.Entities;
+using JFA.AdventureWorks.Repository;
+using JFA.AdventureWorks.Web.ViewModel;
 using System.Web.Mvc;
 
 namespace JFA.AdventureWorks.Web.Controllers
@@ -6,11 +8,20 @@ namespace JFA.AdventureWorks.Web.Controllers
     public class PeopleController : Controller
     {
         // GET: People
-        public ActionResult Index()
+        public ActionResult Index(int? curPage, int? prevPage)
         {
             var db = new PersonRepository();
             int p, r;
-            return View(db.Search("", 1, 10, out r, out p));
+
+            var model = new IndexPager<Person>();
+            model.TheList = db.Search("", curPage ?? 1, Config.PageSize, out r, out p);
+            model.CurrentPage = curPage ?? 1;
+            model.PreviousPage = prevPage ?? 0;
+            model.PageSize = Config.PageSize;
+            model.TotalRecords = r;
+           
+
+            return View(model);
         }
 
         // GET: People/Details/5

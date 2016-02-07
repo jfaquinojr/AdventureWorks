@@ -1,0 +1,20 @@
+﻿@model JFA.AdventureWorks.Web.ViewModel.PagerBase
+
+<nav>
+    <ul class="pagination">
+        <li><a href='/people/index?curpage=1' aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        @{
+            var start = Model.GetStartingPagerNumber(Config.MaxPagerCount);
+            var end = start + Config.MaxPagerCount;
+            if (end > Model.TotalPages)
+            {
+                end = Model.TotalPages;
+            }
+        }
+        @for (var i = start; i < end; i++)
+        {
+            <li class='@( i == (Model.CurrentPage - 1) ? "active" : "" )'><a href='/people/index?curpage=@(i+1)&prevpage=@Model.CurrentPage'>@(i + 1)</a></li>
+        }
+        <li><a href='/people/index?curpage=@Model.TotalPages' aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+</nav>
